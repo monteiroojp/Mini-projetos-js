@@ -219,3 +219,22 @@ td{
     font-size: 1em;
     margin-right: 5px;
 }
+
+#editButton{
+    background-color: rgb(255, 145, 0);
+    color: white;
+    padding: 0.2rem;
+    width: 80px;
+    cursor: pointer;
+    font-size: 1em;
+    margin-right: 5px;
+}
+
+@keyframes fadeOut {
+    0% { opacity: 1; }
+    100% { opacity: 0; height: 0; padding: 0; margin: 0; }
+}
+
+.fade-out {
+    animation: fadeOut 0.5s ease-in-out forwards;
+}
