@@ -1,6 +1,7 @@
 /*Variáveis*/
 const saveButton = document.getElementById('saveButton')
 const editButton = document.getElementById('editButton')
+let h2 = document.getElementById('modal-tittle')
 
 /*Funções*/
 const openModal = () => document.getElementById('modal')
@@ -38,7 +39,7 @@ const updateClient = (client, index) => {
 const deleteClient = (index) => {
     console.log('deletando...') 
     const dbClient = getDataBase()
-    dbClient.splice(index)
+    dbClient.splice(index, 1)
     setDataBase(dbClient)
 }
 
@@ -85,8 +86,10 @@ const clearModal = (client) => {
 }
 
 const getTableRows = () => {
-    if(c >= 1){
-        let tableRows = document.querySelectorAll('td.actions')
+  
+    let tableRows = document.querySelectorAll('td.actions')
+
+    if(tableRows.length != 0){
         tableRows.forEach((tableRow) =>{
             tableRow.addEventListener('click', (e) => {
                 if(typeof(e.target) == 'object'){
@@ -97,9 +100,11 @@ const getTableRows = () => {
             })
         })
     }
+
 }
 
 const updateTable = () => {
+    console.log('updatando')
     const tBody = document.getElementById('tbody')
     tBody.innerHTML = ""
 
@@ -120,9 +125,13 @@ const fillInputs = (index) =>{
         input.value = currentClient[input.id]
     })
 
+    
+    h2.innerHTML = `${inputs[0].value}`
+
 }
 
 const actionsClients = (action, index) => {
+    console.log('chegou o parâmetro para ação!')
     if(action == 'edit'){
         saveButton.style.display = 'none'
         editButton.style.display = 'inline'
@@ -192,13 +201,11 @@ saveButton.addEventListener('click', saveClient)
 document.getElementById('signButton').addEventListener('click', () =>{
     saveButton.style.display = 'inline'
     editButton.style.display = 'none'
+    h2.innerHTML = `Novo Cliente`
     openModal()
 })
-
-
-
-
 updateTable()
+
 
 
 
